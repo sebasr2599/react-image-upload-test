@@ -1,0 +1,78 @@
+{
+  "name": "bhcg-exam",
+  "$schema": "node_modules/nx/schemas/project-schema.json",
+  "sourceRoot": "./src",
+  "projectType": "application",
+  "targets": {
+    "build": {
+      "executor": "@nx/vite:build",
+      "outputs": ["{options.outputPath}"],
+      "defaultConfiguration": "production",
+      "options": {
+        "outputPath": "dist/bhcg-exam"
+      },
+      "configurations": {
+        "development": {
+          "mode": "development"
+        },
+        "production": {
+          "mode": "production"
+        }
+      }
+    },
+    "serve": {
+      "executor": "@nx/vite:dev-server",
+      "defaultConfiguration": "development",
+      "options": {
+        "buildTarget": "bhcg-exam:build"
+      },
+      "configurations": {
+        "development": {
+          "buildTarget": "bhcg-exam:build:development",
+          "hmr": true
+        },
+        "production": {
+          "buildTarget": "bhcg-exam:build:production",
+          "hmr": false
+        }
+      }
+    },
+    "preview": {
+      "executor": "@nx/vite:preview-server",
+      "defaultConfiguration": "development",
+      "options": {
+        "buildTarget": "bhcg-exam:build"
+      },
+      "configurations": {
+        "development": {
+          "buildTarget": "bhcg-exam:build:development"
+        },
+        "production": {
+          "buildTarget": "bhcg-exam:build:production"
+        }
+      }
+    },
+    "test": {
+      "executor": "@nx/vite:test",
+      "outputs": ["coverage/bhcg-exam"],
+      "options": {
+        "passWithNoTests": true,
+        "reportsDirectory": "coverage/bhcg-exam"
+      }
+    },
+    "lint": {
+      "executor": "@nx/linter:eslint",
+      "outputs": ["{options.outputFile}"],
+      "options": {
+        "lintFilePatterns": ["./src/**/*.{ts,tsx,js,jsx}"]
+      }
+    },
+    "serve-static": {
+      "executor": "@nx/web:file-server",
+      "options": {
+        "buildTarget": "bhcg-exam:build"
+      }
+    }
+  },
+  "tags": []
+}
