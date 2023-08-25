@@ -21,7 +21,7 @@ import { UpdateImageDto } from './dto/update-image.dto';
 import { Image } from '@prisma/client';
 import { FileInterceptor } from '@nestjs/platform-express';
 import { diskStorage } from 'multer';
-import { extname, join } from 'path';
+import { extname } from 'path';
 import * as fs from 'fs';
 
 @Controller('image')
