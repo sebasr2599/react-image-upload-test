@@ -28,6 +28,7 @@ import * as fs from 'fs';
 export class ImageController {
   constructor(private readonly imageService: ImageService) {}
 
+  //Create image
   @Post()
   @UseInterceptors(
     FileInterceptor('file', {
@@ -63,15 +64,18 @@ export class ImageController {
     return this.imageService.create(imgData);
   }
 
+  //Get list of images
   @Get()
   async findAll(): Promise<Image[]> {
     return this.imageService.findAll();
   }
 
+  // Read individual image
   @Get(':id')
   async findOne(@Param('id') id: string): Promise<Image | null> {
     return this.imageService.findOne(+id);
   }
+
   @Get('img/:fileName')
   getImage(@Param('fileName') fileName: string) {
     let imagePath = `./back-end/images/${fileName}`;
